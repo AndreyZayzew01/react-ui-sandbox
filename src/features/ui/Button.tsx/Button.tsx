@@ -1,3 +1,4 @@
+import React from "react";
 import "./Button.css";
 
 type ButtonProps = {
@@ -5,11 +6,11 @@ type ButtonProps = {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const Button = ({ buttonText, onClick }: ButtonProps) => {
+export const Button = React.memo(({ buttonText, onClick }: ButtonProps) => {
 
 return (
   <div>
     <button className="button" onClick={onClick}>{buttonText}</button>
   </div>
 );
-} 
+}); 

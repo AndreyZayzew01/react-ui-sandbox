@@ -4,10 +4,14 @@ import { UsersSearchInput } from "../../../features/ui/UsersSearchInput/UsersSea
 
 export const MainPage = () => {
 
+console.log('MainPage');
+
   return (
     <div>
       <div className="users-list">
-        <UsersSearchInput />
+        <div className="users-search-input">
+          <UsersSearchInput />
+        </div>
         <UserCard />
       </div>
     </div>
