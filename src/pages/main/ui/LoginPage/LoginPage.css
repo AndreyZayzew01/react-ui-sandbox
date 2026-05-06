@@ -1,0 +1,111 @@
+/* Контейнер страницы */
+.login-page,
+.login-page-authenticated {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(180deg, #f7f9fc 0%, #eef3ff 100%);
+  box-sizing: border-box;
+}
+
+/* Карточка */
+.login-form-card {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  border: 1px solid #e7eaf3;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(31, 45, 61, 0.08);
+  padding: 28px 24px;
+  box-sizing: border-box;
+}
+
+/* Заголовок */
+.login-page-title {
+  margin: 0 0 18px 0;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1f2d3d;
+  text-align: center;
+}
+
+/* Форма */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+/* Select */
+.login-form select {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #cfd7e6;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #1f2d3d;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-form select:focus {
+  border-color: #5b8def;
+  box-shadow: 0 0 0 3px rgba(91, 141, 239, 0.2);
+}
+
+/* Кнопки */
+.login-form button,
+.login-page-authenticated button {
+  height: 44px;
+  border: none;
+  border-radius: 10px;
+  background: #5b8def;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.04s ease;
+}
+
+.login-form button:hover,
+.login-page-authenticated button:hover {
+  background: #4a7fe6;
+}
+
+.login-form button:active,
+.login-page-authenticated button:active {
+  transform: translateY(1px);
+}
+
+/* Блок "уже авторизованы" */
+.login-page-authenticated .login-form-card {
+  text-align: center;
+}
+
+.login-page-authenticated p {
+  margin: 0 0 14px 0;
+  color: #5f6b7a;
+  font-size: 15px;
+}
+
+/* Адаптив */
+@media (max-width: 480px) {
+  .login-form-card {
+    padding: 22px 16px;
+    border-radius: 12px;
+  }
+
+  .login-page-title {
+    font-size: 24px;
+  }
+}
