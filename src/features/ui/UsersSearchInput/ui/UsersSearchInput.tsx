@@ -1,17 +1,19 @@
 import { ChangeEvent, useCallback, useState } from "react";
-import { useUsers } from "../../../../entities/user/model/UsersContext";
-import { Button } from "../../Button.tsx/Button";
+import { useUsers } from "../../../../shared/providers/UsersContext";
+import { Button } from "../../../../shared/ui/Button/Button";
 import "./UsersSearchInput.css";
 
 export const UsersSearchInput = () => {
   const { setUsers, allUsers } = useUsers();
   const [searchText, setSearchText] = useState<string>("");
+  const [searchNotFound, setSearchNotFound] = useState(false);
 
   const handleSearchUser = useCallback(() => {
     const normalized = searchText.trim().toLowerCase();
 
     if (!normalized) {
       setUsers(allUsers);
+      setSearchNotFound(false);
       return;
     }
 
@@ -20,16 +22,16 @@ export const UsersSearchInput = () => {
     );
 
     setUsers(filtered);
-  }, [searchText, allUsers, setUsers]);
+    setSearchNotFound(filtered.length === 0 );
+  }, [searchText, allUsers, setUsers, setSearchNotFound]);
 
   const handleResetSearch = () => {
     setUsers(allUsers);
     setSearchText("");
+    setSearchNotFound(false);
   };
 
-  function handleInputChange(
-    event: ChangeEvent<HTMLInputElement, HTMLInputElement>,
-  ): void {
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>): void {
     setSearchText(event.target.value);
   }
 
@@ -44,6 +46,7 @@ export const UsersSearchInput = () => {
       />
       <Button buttonText="Поиск" onClick={handleSearchUser} />
       <Button buttonText="Сбросить поиск" onClick={handleResetSearch} />
+      {searchNotFound && <p className="search-not-found">По вашему запросу ничего не найдено</p>}
     </div>
   );
 };

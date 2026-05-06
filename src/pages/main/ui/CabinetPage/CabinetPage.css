@@ -1,0 +1,24 @@
+.cabinet-page {
+  width: 100%;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-5);
+}
+
+.cabinet-page h1 {
+  margin: 0 0 var(--space-3);
+}
+
+.cabinet-page-status {
+  margin-bottom: var(--space-3);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .cabinet-page {
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+  }
+}
