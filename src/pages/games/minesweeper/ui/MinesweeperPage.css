@@ -1,0 +1,7 @@
+.main-page-title{ 
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 20px;
+}

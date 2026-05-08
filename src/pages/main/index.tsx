@@ -1,2 +1,2 @@
 export { MainPage } from "./ui/MainPage/MainPage";
-export { UserPage } from "./ui/UserPage/UserPage";
+export { UsersPage } from "./ui/UserPage/UsersPage";

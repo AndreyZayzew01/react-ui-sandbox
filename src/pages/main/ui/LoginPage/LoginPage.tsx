@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../shared/providers/AuthContext";
 import { Role } from "../../../../entities/user/model/types";
 import { FormEvent, useState } from "react";
 import "./LoginPage.css";
+import { Button } from "../../../../shared";
 
 export const LoginPage = () => {
   const { loginAs, currentUser } = useAuth();
@@ -42,6 +43,9 @@ export const LoginPage = () => {
         </select>
         <button type="submit">Войти</button>
       </form>
+      <Link to="/">
+        <Button buttonText="На главную" />
+      </Link>
     </div>
   );
 };

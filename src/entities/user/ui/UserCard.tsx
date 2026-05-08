@@ -30,7 +30,7 @@ export function UserCard({ users }: UserCardProps) {
             >
               {user.isActive ? "🟢" : "🔴"}
             </button>
-            <Link to={`/users/${user.id}`}>
+            <Link to="/cabinet/users">
               <ul className="user-card">
                 <p>Name: {user.name}</p>
                 <p>Email: {user.email}</p>

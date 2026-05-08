@@ -25,6 +25,18 @@
   margin: 0 0 var(--space-2);
 }
 
+
+.main-auth-actions {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-auth-actions a {
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .users-list {
     padding: var(--space-4);
@@ -38,4 +50,5 @@
     border-radius: var(--radius-md);
   }
 }
+
 

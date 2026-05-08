@@ -1,3 +1,4 @@
+/* Основной стиль кнопки */
 .button {
   display: inline-flex;
   align-items: center;
@@ -19,6 +20,7 @@
     border-color var(--transition-fast);
 }
 
+/* Эффекты при наведении */
 .button:hover {
   background-color: var(--accent-hover);
   box-shadow: var(--shadow-sm);
@@ -40,6 +42,33 @@
   transform: none;
   box-shadow: none;
 }
+
+.tooltip { 
+  position: absolute;
+  z-index: 1000;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #222;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.buttonWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.buttonWrapper:hover .tooltip {
+  opacity: 1;
+}
+.tooltip--top { bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
+.tooltip--bottom { top: calc(100% + 8px); left: 50%; transform: translateX(-50%); }
+.tooltip--left { right: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
+.tooltip--right { left: calc(100% + 8px); top: 50%; transform: translateY(-50%); }
 
 @media (max-width: 640px) {
   .button {

@@ -5,7 +5,7 @@ import { useAuth } from "./AuthContext";
 type RequirePermissionProps = {
   permission: Permission;
   children: ReactNode;
-  fallback: ReactNode;
+  fallback?: ReactNode;
 };
 
 

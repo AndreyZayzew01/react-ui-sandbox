@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
-import { useUsers } from "../../../../shared/providers/UsersContext";
-import { Role, User } from "../../../../entities/user/model/types";
-import { Button } from "../../../../features";
-import { useAuth } from "../../../../shared/providers/AuthContext";
+import { useUsers } from "../../../../../shared/providers/UsersContext";
+import { Role, User } from "../../../../../entities/user/model/types";
+import { Button } from "../../../../../features";
+import { useAuth } from "../../../../../shared/providers/AuthContext";
 import "./UserPage.css";
 
 export function UserPage() {
