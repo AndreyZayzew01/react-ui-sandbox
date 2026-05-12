@@ -1,34 +1,62 @@
-/* Контейнер страницы */
-.login-page,
-.login-page-authenticated {
-  min-height: calc(100vh - 120px);
+/* Контейнер страницы — карточка в духе main-page-content-inner */
+.login-page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background: linear-gradient(180deg, #f7f9fc 0%, #eef3ff 100%);
+  gap: var(--space-5);
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  background: rgb(65, 55, 55);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-5);
   box-sizing: border-box;
+}
+
+.login-page > h1 {
+  margin: 0 0 var(--space-2);
+  font-size: clamp(1.375rem, 3.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+.login-page-authenticated {
+  min-height: calc(100vh - 120px);
+  min-height: calc(100dvh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  box-sizing: border-box;
+  gap: var(--space-3);
 }
 
 /* Карточка */
 .login-form-card {
   width: 100%;
   max-width: 420px;
-  background: #ffffff;
-  border: 1px solid #e7eaf3;
-  border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(31, 45, 61, 0.08);
-  padding: 28px 24px;
+  background: rgb(65, 55, 55);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6) var(--space-5);
   box-sizing: border-box;
 }
 
-/* Заголовок */
+/* Заголовок вне тёмной карточки (например «уже авторизованы») */
 .login-page-title {
-  margin: 0 0 18px 0;
-  font-size: 28px;
+  margin: 0 0 var(--space-3);
+  font-size: clamp(1.375rem, 3.5vw, 1.75rem);
   line-height: 1.2;
   font-weight: 700;
-  color: #1f2d3d;
+  color: var(--text-primary);
   text-align: center;
 }
 
@@ -36,76 +64,89 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-3);
+  width: 100%;
 }
 
 .login-form label {
   font-size: 14px;
   font-weight: 600;
-  color: #4a5568;
+  color: rgba(255, 255, 255, 0.88);
 }
 
 /* Select */
 .login-form select {
   height: 42px;
-  padding: 0 12px;
-  border: 1px solid #cfd7e6;
-  border-radius: 10px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
   font-size: 15px;
-  color: #1f2d3d;
-  background: #fff;
+  font-family: inherit;
+  color: var(--text-primary);
+  background: var(--bg-surface);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 .login-form select:focus {
-  border-color: #5b8def;
-  box-shadow: 0 0 0 3px rgba(91, 141, 239, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
-/* Кнопки */
+/* Кнопки — акцент проекта из index.css */
 .login-form button,
 .login-page-authenticated button {
   height: 44px;
   border: none;
-  border-radius: 10px;
-  background: #5b8def;
-  color: #fff;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--accent-contrast);
   font-size: 15px;
   font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.04s ease;
+  transition:
+    background-color var(--transition-base),
+    transform var(--transition-fast);
 }
 
 .login-form button:hover,
 .login-page-authenticated button:hover {
-  background: #4a7fe6;
+  background: var(--accent-hover);
 }
 
 .login-form button:active,
 .login-page-authenticated button:active {
+  background: var(--accent-active);
   transform: translateY(1px);
 }
 
-/* Блок "уже авторизованы" */
+/* Блок «уже авторизованы» */
 .login-page-authenticated .login-form-card {
   text-align: center;
 }
 
 .login-page-authenticated p {
-  margin: 0 0 14px 0;
-  color: #5f6b7a;
+  margin: 0 0 var(--space-3);
+  color: var(--text-secondary);
   font-size: 15px;
 }
 
 /* Адаптив */
 @media (max-width: 480px) {
+  .login-page {
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+  }
+
   .login-form-card {
-    padding: 22px 16px;
-    border-radius: 12px;
+    padding: var(--space-5) var(--space-4);
+    border-radius: var(--radius-md);
   }
 
   .login-page-title {
-    font-size: 24px;
+    font-size: 1.375rem;
   }
 }

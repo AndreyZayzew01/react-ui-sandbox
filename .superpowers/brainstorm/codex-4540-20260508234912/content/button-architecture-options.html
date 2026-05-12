@@ -1,0 +1,264 @@
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .card {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+  }
+  .card-image {
+    padding: 18px;
+    background:
+      radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 45%),
+      linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+    min-height: 210px;
+  }
+  .card-body {
+    padding: 18px 18px 20px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: #e2e8f0;
+    color: #334155;
+    margin-bottom: 10px;
+  }
+  .pill.recommended {
+    background: #dbeafe;
+    color: #1d4ed8;
+  }
+  .mock-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid transparent;
+    transition: all .18s ease;
+  }
+  .btn.primary-a {
+    background: #111827;
+    color: white;
+  }
+  .btn.secondary-a {
+    background: white;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+  .btn.primary-b {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    color: white;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+  }
+  .btn.secondary-b {
+    background: #e0f2fe;
+    color: #075985;
+    border-color: #bae6fd;
+  }
+  .btn.primary-c {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+    color: white;
+    box-shadow: 0 14px 24px rgba(194, 65, 12, 0.28);
+  }
+  .btn.secondary-c {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fdba74;
+  }
+  .btn.icon::before {
+    content: "✦";
+    margin-right: 8px;
+    font-size: 12px;
+  }
+  .tooltip-demo {
+    position: relative;
+    display: inline-flex;
+    width: fit-content;
+  }
+  .tooltip-bubble {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%);
+    padding: 7px 10px;
+    border-radius: 10px;
+    background: #0f172a;
+    color: white;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .code {
+    margin-top: 12px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: #0f172a;
+    color: #dbeafe;
+    white-space: pre-wrap;
+  }
+  .notes {
+    margin-top: 12px;
+    color: #475569;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .summary {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 18px;
+    margin-top: 26px;
+  }
+  .summary .mockup {
+    margin: 0;
+  }
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .layer {
+    border-radius: 16px;
+    padding: 14px 16px;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    background: white;
+  }
+  .layer strong {
+    display: block;
+    margin-bottom: 6px;
+  }
+</style>
+
+<h2>Unified Button Direction</h2>
+<p class="subtitle">`src/components/ui/button.tsx` становится базой. Вопрос сейчас: как совместить её со старыми пропсами и какой визуальный тон взять за основу.</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="pill">Option A</div>
+      <div class="mock-stage">
+        <div class="toolbar">
+          <div class="btn primary-a">Save</div>
+          <div class="btn secondary-a">Cancel</div>
+        </div>
+        <div class="tooltip-demo">
+          <div class="btn secondary-a icon">Details</div>
+          <div class="tooltip-bubble">tooltip stays external</div>
+        </div>
+        <div class="code">Base button: variant + size + asChild
+Legacy Button: thin wrapper keeps buttonText/tooltip</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Conservative Merge</h3>
+      <p>Оставляем красивую базу в `components/ui/button.tsx`, а старый `shared/ui/Button` превращаем в совместимый адаптер.</p>
+      <div class="notes">Плюс: минимум риска. Минус: всё ещё будет два уровня API, пусть и с разной ролью.</div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="pill recommended">Recommended</div>
+      <div class="mock-stage">
+        <div class="toolbar">
+          <div class="btn primary-b">Save changes</div>
+          <div class="btn secondary-b">Preview</div>
+        </div>
+        <div class="tooltip-demo">
+          <div class="btn secondary-b icon">Access</div>
+          <div class="tooltip-bubble">tooltip becomes optional built-in slot</div>
+        </div>
+        <div class="code">Single core API
+variant + size + tooltip + buttonText alias
+Legacy props mapped inside one component</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Balanced Hybrid</h3>
+      <p>Делаем одну главную кнопку на базе `cva`, но сохраняем старые пропсы как совместимые алиасы и переносим tooltip внутрь компонента.</p>
+      <div class="notes">Плюс: единая точка входа и переиспользуемость. Минус: API нужно аккуратно спроектировать, чтобы он не стал слишком широким.</div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="pill">Option C</div>
+      <div class="mock-stage">
+        <div class="toolbar">
+          <div class="btn primary-c">Launch</div>
+          <div class="btn secondary-c">Later</div>
+        </div>
+        <div class="tooltip-demo">
+          <div class="btn secondary-c icon">Power</div>
+          <div class="tooltip-bubble">same API, stronger personality</div>
+        </div>
+        <div class="code">Same hybrid architecture as B
+but with warmer palette, stronger depth,
+more product-like visual identity</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Expressive Hybrid</h3>
+      <p>Та же идея единой кнопки, но со смелее поданной визуальной системой: теплее цвет, глубже тени, сильнее состояние hover/active.</p>
+      <div class="notes">Плюс: заметнее характер. Минус: может выбиваться, если остальной UI у вас сейчас спокойнее.</div>
+    </div>
+  </div>
+</div>
+
+<div class="summary">
+  <div class="mockup">
+    <div class="mockup-header">Recommended Architecture</div>
+    <div class="mockup-body stack">
+      <div class="layer">
+        <strong>Core button</strong>
+        `variant`, `size`, `asChild`, `leftIcon`, `rightIcon`, `tooltip`, `children`
+      </div>
+      <div class="layer">
+        <strong>Compatibility layer</strong>
+        `buttonText` maps to `children`, old props still accepted during migration
+      </div>
+      <div class="layer">
+        <strong>Migration path</strong>
+        New screens use modern API, old screens keep working without urgent rewrite
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">Decision We Need</div>
+    <div class="mockup-body">
+      <p style="margin-top:0">Сейчас важно выбрать не реализацию по строчкам, а направление:</p>
+      <ul>
+        <li>оставляем wrapper как адаптер</li>
+        <li>или переносим legacy-пропсы прямо в базовую кнопку</li>
+        <li>и какой тон стилизации ближе проекту</li>
+      </ul>
+    </div>
+  </div>
+</div>

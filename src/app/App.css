@@ -6,10 +6,22 @@
   width: 100%;
   padding: var(--space-6) var(--space-4) var(--space-8);
   text-align: left;
+  background: var(rgb(65, 55, 55));
 }
 
 .App > * {
   width: min(1120px, 100%);
+}
+
+.App--full-bleed {
+  padding: 0;
+  min-height: 100dvh;
+  align-items: stretch;
+}
+
+.App--full-bleed > * {
+  flex: 1 1 auto;
+  width: 100%;
 }
 
 @media (max-width: 1024px) {

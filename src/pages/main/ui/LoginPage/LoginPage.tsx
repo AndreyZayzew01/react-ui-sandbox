@@ -3,7 +3,8 @@ import { useAuth } from "../../../../shared/providers/AuthContext";
 import { Role } from "../../../../entities/user/model/types";
 import { FormEvent, useState } from "react";
 import "./LoginPage.css";
-import { Button } from "../../../../shared";
+import { Button } from "../../../../components/ui/button";
+import { ArrowLeftIcon } from "lucide-react";
 
 export const LoginPage = () => {
   const { loginAs, currentUser } = useAuth();
@@ -28,7 +29,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <div>
+    <div className="login-page">
       <h1>Вход</h1>
       <form onSubmit={onSubmit} className="login-form">
         <label htmlFor="role">Выберите роль</label>
@@ -43,9 +44,12 @@ export const LoginPage = () => {
         </select>
         <button type="submit">Войти</button>
       </form>
-      <Link to="/">
-        <Button buttonText="На главную" />
-      </Link>
+      <Button asChild variant="outline">
+        <Link to="/">
+          <ArrowLeftIcon className="w-4 h-4" />
+          На главную
+        </Link>
+      </Button>
     </div>
   );
 };
